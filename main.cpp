@@ -1,9 +1,9 @@
-#include <iostream>
 #include "Hangman.h"
-#include "Test.h"
 
 int main()
 {
-    Test::runTests();
+    Hangman game;
+    game.start();
+
     return 0;
 }

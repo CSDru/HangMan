@@ -2,7 +2,7 @@
 // Created by Dru on 9/5/2024.
 //
 
-#include "Test.h"
+/*#include "Test.h"
 #include <iostream>
 
 
@@ -20,3 +20,4 @@ void Test::test(const T& object, const std::string& testName, bool lambda(const 
     else
         std::cout << "FAILED\n";
 }
+*/

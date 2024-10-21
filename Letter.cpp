@@ -3,11 +3,9 @@
 //
 
 #include "Letter.h"
-Letter::Letter()
-        : Letter('_')
-{
+#include <iostream>
 
-}
+Letter::Letter() : Letter('_'){}
 
 Letter::Letter(char letter)
 {
@@ -17,15 +15,33 @@ Letter::Letter(char letter)
 char Letter::getLetter() const
 {
     return _letter;
-};
+}
 
 void Letter::setLetter(char letter)
 {
-    this->_letter = letter;
+    _letter = letter;
 }
 
+bool Letter::isRevealed() const
+{
+    return _revealed;
+}
+
+void Letter::reveal()
+{
+    _revealed = true;
+}
+
+// Overload << operator for Letter class
 std::ostream& operator<<(std::ostream& out, const Letter& letter)
 {
-    out << letter._letter;
+    if (letter.isRevealed())
+    {
+        out << letter.getLetter();
+    }
+    else
+    {
+        out << '_';
+    }
     return out;
 }

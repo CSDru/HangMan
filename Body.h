@@ -6,14 +6,16 @@
 #define HANGMAN_BODY_H
 
 #include <iostream>
+
 class Body
 {
+private:
+    int partsDrawn = 0;
 
 public:
-    friend std::ostream& operator<<(std::ostream& out, const Body& phrase);
-    /**
-     * implement functionality to gradually draw the body
-     */
+    friend std::ostream& operator<<(std::ostream& out, const Body& body);
+    void drawNextPart();
+    bool isComplete() const;
 };
 
 #endif //HANGMAN_BODY_H

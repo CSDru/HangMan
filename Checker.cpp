@@ -3,23 +3,20 @@
 //
 
 #include "Checker.h"
+
 Checker::Checker()
 {
-
 }
 
-Checker::Checker(Phrase &phrase)
-        : phrasePtr(&phrase)
+Checker::Checker(Word &word) : wordPtr(&word)
 {
-
 }
 
 bool Checker::hasLetter(const Letter &letter) const
 {
-    for (const auto &word: *phrasePtr)
-        for(const auto &l : word.getWord())
-            if(l.getLetter() == letter.getLetter())
-                return true;
+    for (const auto &l : wordPtr->getWord())
+        if (l.getLetter() == letter.getLetter())
+            return true;
 
     return false;
 }

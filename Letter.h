@@ -5,18 +5,23 @@
 #ifndef HANGMAN_LETTER_H
 #define HANGMAN_LETTER_H
 
-#include <iostream>
-class Letter
+#include <ostream>  // Include this header to allow usage of std::ostream
 
+class Letter
 {
 private:
     char _letter;
+    bool _revealed = false;
 
 public:
     Letter();
-    explicit Letter(char letter);
+    Letter(char letter);
+
     char getLetter() const;
     void setLetter(char letter);
+    bool isRevealed() const;
+    void reveal();
+
     friend std::ostream& operator<<(std::ostream& out, const Letter& letter);
 };
 

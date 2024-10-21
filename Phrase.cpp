@@ -3,47 +3,51 @@
 //
 
 #include "Phrase.h"
-#include <sstream>
 
-void Phrase::setPhrase(const std::string& phrase)
-{
-    _phrase.clear();
-}
-std::vector<Word> Phrase::split(const std::string& word)
-{
-    std::stringstream s(word);
-    std::vector<Word> words;
-    std::string next;
-
-    while(s >> next)
-        words.emplace_back(next);
-
-    return words;
-}
-
-Phrase::Phrase() : Phrase("")
-{
-
-}
+Phrase::Phrase() : Phrase(""){}
 
 Phrase::Phrase(const std::string &phrase)
 {
     setPhrase(phrase);
 }
 
-std::string Phrase::toString() const
+void Phrase::setPhrase(const std::string &phrase)
 {
-    std::string ret;
-    for(int i=0; i<_phrase.at(i).size(); ++i)
+    _phrase.clear();
+    std::string currentWord;
+    for (char c : phrase)
     {
-        ret += _phrase.at(i).toString();
-        if(i<_phrase.at(i).size() - 1)
-            ret += " ";
+        if (c == ' ')
+        {
+            _phrase.emplace_back(currentWord);
+            currentWord.clear();
+        }
+        else
+        {
+            currentWord.push_back(c);
+        }
     }
-    return ret;
+    if (!currentWord.empty())
+    {
+        _phrase.emplace_back(currentWord);
+    }
 }
 
-const std::vector<Word> &Phrase::getPhrase() const
+std::string Phrase::toString() const
+{
+    std::string result;
+    for (size_t i = 0; i < _phrase.size(); ++i)
+    {
+        result += _phrase[i].toString();
+        if (i < _phrase.size() - 1)
+        {
+            result += " ";
+        }
+    }
+    return result;
+}
+
+const std::vector<Word>& Phrase::getPhrase() const
 {
     return _phrase;
 }

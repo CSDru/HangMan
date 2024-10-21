@@ -6,24 +6,17 @@
 #define HANGMAN_VIEW_H
 
 #include "Body.h"
-#include "Phrase.h"
-#include <iostream>
+#include "Word.h"
+
 class View
 {
 private:
-    Body body;
-    Phrase phrase;
-    Word incorrectLetters;
-    Phrase prompt;
+    Body* body;
+    Word* word;
 
 public:
-    View();
-    friend std::ostream& operator<<(std::ostream& out, const View& view);
-    /***
-     * Create getters and setters for private member variables
-     */
-
+    View(Body& body, Word& word);  // Constructor
+    void display() const;  // Display the current game state
 };
-
 
 #endif //HANGMAN_VIEW_H

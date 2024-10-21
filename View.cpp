@@ -3,15 +3,12 @@
 //
 
 #include "View.h"
-View::View()
+#include <iostream>
+
+View::View(Body& body, Word& word) : body(&body), word(&word) {}
+
+void View::display() const
 {
-
-}
-
-
-std::ostream &operator<<(std::ostream &out, const View &view)
-{
-    out << view.phrase << view.body << view.incorrectLetters;
-
-    return out;
+    std::cout << "Current word: " << *word << std::endl;
+    std::cout << "Hangman figure:\n" << *body << std::endl;
 }

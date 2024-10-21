@@ -3,24 +3,25 @@
 //
 
 #include "Word.h"
+#include <iostream>
+
 std::ostream& operator<<(std::ostream& out, const Word& word)
 {
-    for( Letter l : word._word)
+    for( const Letter& l : word.getWord())
     {
         out << l;
     }
-
     return out;
 }
 
-std::string Word::toString() const {
-    std::string word;
-    for (auto i : _word)
+std::string Word::toString() const
+{
+    std::string wordStr;
+    for (const auto &l : _word)
     {
-
-        word.push_back(i.getLetter());
+        wordStr.push_back(l.getLetter());
     }
-    return word;
+    return wordStr;
 }
 
 Word::Word(const std::string& word)
@@ -31,24 +32,39 @@ Word::Word(const std::string& word)
 void Word::setWord(const std::string& word)
 {
     _word.clear();
-    for(char i : word)
+    for(char c : word)
     {
-        _word.emplace_back(i);
+        _word.emplace_back(c);
     }
 }
+
 const std::vector<Letter>& Word::getWord() const
 {
     return _word;
 }
 
-bool operator==(const Word& word1, const Word& word2){
-    return word1.toString() == word2.toString();
+bool Word::guessLetter(char letter)
+{
+    bool found = false;
+    for (Letter &l : _word)
+    {
+        if (l.getLetter() == letter)
+        {
+            l.reveal();
+            found = true;
+        }
+    }
+    return found;
 }
 
-bool operator!=(const Word& word1, const Word& word2){
-    return word1.toString() != word2.toString();
-}
-
-unsigned int Word::size() const{
-    return _word.size();
+bool Word::isFullyGuessed() const
+{
+    for (const Letter &l : _word)
+    {
+        if (!l.isRevealed())
+        {
+            return false;
+        }
+    }
+    return true;
 }

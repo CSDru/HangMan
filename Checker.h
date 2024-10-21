@@ -4,15 +4,17 @@
 
 #ifndef HANGMAN_CHECKER_H
 #define HANGMAN_CHECKER_H
-#include "Phrase.h"
+
+#include "Word.h"
+
 class Checker
 {
 private:
-    Phrase *phrasePtr;
+    Word *wordPtr;
 
 public:
     Checker();
-    Checker(Phrase& phrase);
+    Checker(Word& word);
 
     bool hasLetter(const Letter& letter) const;
 };
